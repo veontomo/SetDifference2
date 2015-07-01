@@ -80,10 +80,11 @@ public class MapperFirstBeatsTest {
         HashMap<String, String> result = instance.createMap(lines, separator);
         assertEquals("there should be three rules", 3, result.size());
         assertEquals("a2", result.get("a1"));
-        assertEquals("b1 should remain a1", "a1", result.get("b1"));
+        assertEquals("b1 should be mapped into a1", "a1", result.get("b1"));
         assertEquals("a1", result.get("b2"));
     }
 
+    // a1 -> a2, a2 -> a3, a3 -> a1 results in  a2 -> a1, a3 -> a1
     @Test
     public void testCreateThreeElementLoop() {
         ArrayList<String> lines = new ArrayList<String>(Arrays.asList(new String[]{"a1, a2", "a2, a3", "a3, a1"}));
